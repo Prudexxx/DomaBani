@@ -35,7 +35,7 @@
             }
             
             :root {
-                --primary-color: #40cf53;
+                --primary-color: #0051ca;
                 --secondary-color: #CD853F;
                 --accent-color: #D2691E;
                 --light-color: #F5F5DC;
@@ -51,6 +51,7 @@
                 line-height: 1.6;
                 overflow-x: hidden;
                 width: 100%;
+                background-color:  #F5F5DC;
             }
             
             .container {
@@ -1031,7 +1032,10 @@
                 }
         
             }
-            h3{ color: #FFC107;}    
+        .slide-content h3{ color: #FFC107;}    
+            .products-section {
+  scroll-margin-top: 80px; /* либо другой размер */
+}
         </style>
     </head>
     <body>
@@ -2618,7 +2622,15 @@
                 this.reset();
             });
 
-            
+            // Пример функции прокрутки с учетом фиксированного хедера
+function scrollToSection(sectionId) {
+  const headerHeight = 80; // высота вашего фиксированного меню
+  const targetSection = document.getElementById(sectionId);
+  if (targetSection) {
+    const targetPosition = targetSection.offsetTop - headerHeight;
+    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+  }
+}
         </script>
         <!-- Подключение API Яндекс.Карт -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
