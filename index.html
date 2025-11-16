@@ -34,27 +34,26 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-    
-         :root {
-                --primary-color: #0051ca;
-                --secondary-color: #CD853F;
-                --accent-color: #D2691E;
-                --light-color: #F5F5DC;
-                --dark-color: #001b42;
-                --text-color: #461010;
-                --white: #eeeeee;
-                --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                --transition: all 0.3s ease;
-            }
-            
-            body {
-                color: var(--text-color);
-                line-height: 1.6;
-                overflow-x: hidden;
-                width: 100%;
-                background-color:  #F5F5DC;
-            }
+        :root {
+            --primary-color: #0051ca;
+            --secondary-color: #CD853F;
+            --accent-color: #D2691E;
+            --light-color: #F5F5DC;
+            --dark-color: #001b42;
+            --text-color: #461010;
+            --white: #eeeeee;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
         
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            background-color:  #F5F5DC;
+        }
+    
         .container {
             width: 100%;
             max-width: 1200px;
@@ -430,6 +429,7 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
+            cursor: pointer;
         }
         
         .product-card:hover .product-image img {
@@ -480,6 +480,7 @@
         .category-card-image {
             height: 250px;
             overflow: hidden;
+            position: relative;
         }
         
         .category-card-image img {
@@ -487,6 +488,7 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
+            cursor: pointer;
         }
         
         .category-card:hover .category-card-image img {
@@ -896,7 +898,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background-color: var(--primary-color);
+           
             color: var(--white);
         }
         
@@ -922,6 +924,89 @@
             padding: 20px;
             max-height: 70vh;
             overflow-y: auto;
+        }
+        
+        /* Стили для модального окна галереи */
+        .gallery-modal .modal-content {
+            max-width: 90%;
+            width: 90%;
+            max-height: 90vh;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .gallery-modal .modal-header {
+        
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .gallery-slider-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+        }
+        
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .gallery-slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            border: none;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        
+        .gallery-slider-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .gallery-prev {
+            left: 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .gallery-next {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--white);
+            font-size: 16px;
+            z-index: 10;
         }
         
         /* Анимации */
@@ -971,6 +1056,10 @@
             .category-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
+            
+            .gallery-slider-container {
+                height: 50vh;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1011,6 +1100,10 @@
             .category-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .gallery-slider-container {
+                height: 40vh;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1030,7 +1123,10 @@
             .telegram-form-container, .section-form-container {
                 padding: 20px;
             }
-    
+            
+            .gallery-slider-container {
+                height: 30vh;
+            }
         }
        .slide-content h3{ color: #FFC107;}    
        
@@ -1039,9 +1135,7 @@
   font-weight: 900; /* максимально жирный шрифт */
   font-style: italic; /* курсив */
   color: blue; /* синий цвет текста */
-  /* text-shadow: 2px 2px 0 red; красная тень справа и снизу */
 }
-
 
     </style>
 </head>
@@ -1369,7 +1463,7 @@
                 <div class="category-grid">
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Дом2.jpg" alt="Дом Еловый">
+                            <img src="Дом2.jpg" alt="Дом Еловый" class="gallery-image" data-gallery='["ПРдом1.jpg","ПРдом3.jpg", "ПРоектдомВЕутри.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Дом "Еловый"</h3>
@@ -1390,7 +1484,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Дом3.jpg" alt="Дом Сосновый">
+                            <img src="Дом3.jpg" alt="Дом Сосновый" class="gallery-image" data-gallery='["ПРдом1.jpg","ПРдом3.jpg", "ПРоектдомВЕутри.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Дом "Сосновый"</h3>
@@ -1411,7 +1505,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="глав1.jpg" alt="Дом Кедровый">
+                            <img src="глав1.jpg" alt="Дом Кедровый" class="gallery-image" data-gallery='["ПРдом1.jpg","ПРдом3.jpg", "ПРоектдомВЕутри.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Дом "Кедровый"</h3>
@@ -1468,7 +1562,7 @@
             <h2 class="section-title">Бани</h2>
             <p style="max-width: 70%; text-align: center; margin: 0 auto;">🏡 <b>Создайте свою уютную деревянную баню мечты!</b> <br>
 
-Ищете экологичную, надежную и красивую баню для отдыха и здоровья? Наши бани из натурального дерева — идеальное решение! Они создаются из высококачественного натурального дерева, обеспечивая отличную теплоизоляцию и комфорт для всей семьи.
+Ищете экологичную, надежную и красивую баню для отдыха и здоровья? Наши бани из натурального дерева — идеальное решение! Они создаются из высококачественного натурального дерева, обеспечивая отличная теплоизоляция и комфорт для всей семьи.
 <br><br>
 ✨ <b>Преимущества наших бань:</b><br><br>
 
@@ -1518,7 +1612,7 @@
                 <div class="category-grid">
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баня1.jpg" alt="Баня Русская">
+                            <img src="Баня1.jpg" alt="Баня Русская" class="gallery-image" data-gallery='["Баня1.jpg", "Баня5.jpg", "Баня4.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Баня "Русская"</h3>
@@ -1539,7 +1633,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баня5.jpg" alt="Баня Финская">
+                            <img src="Баня5.jpg" alt="Баня Финская" class="gallery-image" data-gallery='["Баня5.jpg", "Баня1.jpg", "Баня4.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Баня "Финская"</h3>
@@ -1560,7 +1654,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баня4.jpg" alt="Баня Семейная">
+                            <img src="Баня4.jpg" alt="Баня Семейная" class="gallery-image" data-gallery='["Баня4.jpg", "Баня1.jpg", "Баня5.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Баня "Семейная"</h3>
@@ -1667,7 +1761,7 @@
                 <div class="category-grid">
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баняпереносн2.jpg" alt="Передвижная баня Мобильная">
+                            <img src="Баняпереносн2.jpg" alt="Передвижная баня Мобильная" class="gallery-image" data-gallery='["Баняпереносн2.jpg", "Баняпереносн1.jpg", "Баняпереноснцц1.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Передвижная баня "Мобильная"</h3>
@@ -1688,7 +1782,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баняпереносн1.jpg" alt="Передвижная баня Компакт">
+                            <img src="Баняпереносн1.jpg" alt="Передвижная баня Компакт" class="gallery-image" data-gallery='["Баняпереносн1.jpg", "Баняпереносн2.jpg", "Баняпереноснцц1.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Передвижная баня "Компакт"</h3>
@@ -1709,7 +1803,7 @@
 
                     <div class="category-card">
                         <div class="category-card-image">
-                            <img src="Баняпереноснцц1.jpg" alt="Передвижная баня Люкс">
+                            <img src="Баняпереноснцц1.jpg" alt="Передвижная баня Люкс" class="gallery-image" data-gallery='["Баняпереноснцц1.jpg", "Баняпереносн2.jpg", "Баняпереносн1.jpg", "баня2.jpg"]'>
                         </div>
                         <div class="category-card-content">
                             <h3>Передвижная баня "Люкс"</h3>
@@ -2144,6 +2238,28 @@
                             </ul>
                             <div class="product-price">от 320 000 руб.</div>
                 <button class="btn open-section-form-btn pulse-animation" data-product="Передвижная баня 'Люкс'" style="margin-top: 20px; width: 100%;">Заказать расчет</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно галереи -->
+    <div class="modal gallery-modal" id="gallery-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="gallery-title"></h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <div class="gallery-slider-container">
+                    <div class="gallery-slider" id="gallery-slider">
+                        <!-- Слайды будут добавляться динамически -->
+                    </div>
+                    <button class="gallery-slider-btn gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-slider-btn gallery-next"><i class="fas fa-chevron-right"></i></button>
+                    <div class="gallery-counter">
+                        <span id="current-slide">1</span> / <span id="total-slides">0</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -2634,6 +2750,106 @@
             this.reset();
         });
 
+        // ГАЛЕРЕЯ СЛАЙДЕР ДЛЯ ИЗОБРАЖЕНИЙ В КАТЕГОРИЯХ
+        document.addEventListener('DOMContentLoaded', function() {
+            // Собираем все изображения из категорий
+            const galleryImages = document.querySelectorAll('.gallery-image');
+            const galleryModal = document.getElementById('gallery-modal');
+            const gallerySlider = document.getElementById('gallery-slider');
+            const galleryTitle = document.getElementById('gallery-title');
+            const galleryPrevBtn = galleryModal.querySelector('.gallery-prev');
+            const galleryNextBtn = galleryModal.querySelector('.gallery-next');
+            const currentSlideSpan = document.getElementById('current-slide');
+            const totalSlidesSpan = document.getElementById('total-slides');
+            
+            let currentGallerySlide = 0;
+            let currentGalleryImages = [];
+            
+            // Функция для открытия галереи
+            function openGallery(imagesArray) {
+                currentGalleryImages = imagesArray || [];
+                currentGallerySlide = 0;
+                
+                // Обновляем заголовок галереи
+                // galleryTitle.textContent = 'Галерея изображений';
+                
+                updateGallerySlider();
+                galleryModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Функция для обновления слайдера галереи
+            function updateGallerySlider() {
+                gallerySlider.innerHTML = '';
+                
+                currentGalleryImages.forEach((imageSrc, index) => {
+                    const slideElement = document.createElement('div');
+                    slideElement.className = 'gallery-slide';
+                    
+                    const img = document.createElement('img');
+                    img.src = imageSrc;
+                    img.alt = `Изображение ${index + 1}`;
+                    
+                    slideElement.appendChild(img);
+                    gallerySlider.appendChild(slideElement);
+                });
+                
+                gallerySlider.style.transform = `translateX(-${currentGallerySlide * 100}%)`;
+                currentSlideSpan.textContent = currentGallerySlide + 1;
+                totalSlidesSpan.textContent = currentGalleryImages.length;
+            }
+            
+            // Функция для перехода к слайду
+            function goToGallerySlide(index) {
+                currentGallerySlide = index;
+                gallerySlider.style.transform = `translateX(-${currentGallerySlide * 100}%)`;
+                currentSlideSpan.textContent = currentGallerySlide + 1;
+            }
+            
+            // Обработчики для кнопок навигации галереи
+            galleryPrevBtn.addEventListener('click', () => {
+                goToGallerySlide((currentGallerySlide - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+            });
+            
+            galleryNextBtn.addEventListener('click', () => {
+                goToGallerySlide((currentGallerySlide + 1) % currentGalleryImages.length);
+            });
+            
+            // Обработчики для изображений в категориях
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    const galleryData = img.getAttribute('data-gallery');
+                    try {
+                        const imagesArray = JSON.parse(galleryData);
+                        openGallery(imagesArray);
+                    } catch (e) {
+                        console.error('Ошибка парсинга данных галереи:', e);
+                    }
+                });
+            });
+            
+            // Закрытие галереи по клику на фон или кнопку закрытия
+            galleryModal.addEventListener('click', function(e) {
+                if (e.target === galleryModal || e.target.classList.contains('close-modal')) {
+                    galleryModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Навигация по галереи с помощью клавиатуры
+            document.addEventListener('keydown', function(e) {
+                if (galleryModal.classList.contains('show')) {
+                    if (e.key === 'ArrowLeft') {
+                        goToGallerySlide((currentGallerySlide - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+                    } else if (e.key === 'ArrowRight') {
+                        goToGallerySlide((currentGallerySlide + 1) % currentGalleryImages.length);
+                    } else if (e.key === 'Escape') {
+                        galleryModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+        });
         
     </script>
     <!-- Подключение API Яндекс.Карт -->
@@ -2655,10 +2871,5 @@ ymaps.ready(function () {
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
